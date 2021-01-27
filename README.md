@@ -1,10 +1,9 @@
 # geom99
 
 # Directions API
+Toronto to Winnipeg, via Thunder Bay
 
-## Toronto to Winnipeg, via Thunder Bay
-
-# URL:
+## URL:
 https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Winnipeg&waypoints=Thunder+Bay%2CON&avoid=tolls&key=AIzaSyCLpFK8iab0VpFvlmHeV6kSISa9hWxLq-I
 
 ```json
