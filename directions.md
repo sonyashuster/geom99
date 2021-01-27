@@ -5,6 +5,8 @@ Toronto to Winnipeg, via Thunder Bay - avoiding toll routes
 ### URL:
 https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Winnipeg&waypoints=Thunder+Bay%2CON&avoid=tolls&key=AIzaSyCLpFK8iab0VpFvlmHeV6kSISa9hWxLq-I
 
+### Response Code:
+
 ```json
 
 {
