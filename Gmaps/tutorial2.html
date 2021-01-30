@@ -13,7 +13,6 @@
       /* The width is the width of the web page */
       }
     </style>
-    <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
     <script>
       // Initialize and add the map
       function initMap() {
@@ -36,7 +35,7 @@
         // Add a marker clusterer to manage the markers.
         new MarkerClusterer(map, markers, {
           imagePath:
-            "markerClusters",
+            "markerClusters/m",
           });
       }
       const locations = [
@@ -157,6 +156,7 @@
         { lat: 51.104, lng: -94.288 },
       ];
     </script>
+    <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
   </head>
   <body>
     <h3>My Google Maps Demo</h3>
