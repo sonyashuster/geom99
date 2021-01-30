@@ -16,16 +16,16 @@
     <script>
       // Initialize and add the map
       function initMap() {
-        // The location of Antigonish
-        const antigonish = { lat: 45.618083, lng: -61.994997 };
-        // The map, centered at Antigonish
+        // The location of Ontario
+        const ontario = { lat: 48.9676273, lng: -93.7335506 };
+        // The map, centered at Ontario
         const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 8,
-          center: antigonish,
+          zoom: 5,
+          center: ontario,
         });
         // The marker, positioned at Antigonish
         const marker = new google.maps.Marker({
-          position: antigonish,
+          position: ontario,
           map: map,
         });
       }
