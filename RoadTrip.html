@@ -4,7 +4,7 @@
     <title>Waypoints in Directions</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLpFK8iab0VpFvlmHeV6kSISa9hWxLq-I&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLpFK8iab0VpFvlmHeV6kSISa9hWxLq-I&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
     <style type="text/css">
@@ -42,7 +42,7 @@
       }
 
       #right-panel {
-        margin: 20px;
+        margin: 10px 20px 10px;
         border-width: 2px;
         width: 20%;
         height: 400px;
@@ -51,9 +51,15 @@
         padding-top: 0;
       }
 
+      /* #start,
+      #waypoints,
+      #end {
+        margin: 10px 20px 10px; 
+      } */
+
       #directions-panel {
         margin-top: 10px;
-        background-color: #ffee77;
+        background-color: #cfffc3;
         padding: 10px;
         overflow: scroll;
         height: 174px;
@@ -64,8 +70,8 @@
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer();
         const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 6,
-          center: { lat: 41.85, lng: -87.65 },
+          zoom: 4,
+          center: { lat: 49.71, lng: -100.79 },
         });
         directionsRenderer.setMap(map);
         document.getElementById("submit").addEventListener("click", () => {
@@ -109,7 +115,9 @@
                 summaryPanel.innerHTML += route.legs[i].start_address + " to ";
                 summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
                 summaryPanel.innerHTML +=
-                  route.legs[i].distance.text + "<br><br>";
+                  route.legs[i].distance.text + "<br>";
+                summaryPanel.innerHTML += 
+                  route.legs[i].duration.text + "<br><br>";
               }
             } else {
               window.alert("Directions request failed due to " + status);
@@ -123,32 +131,48 @@
     <div id="map"></div>
     <div id="right-panel">
       <div>
+        <h2>Canadian Road Trip</h2>
+        <p>You're planning a road trip across Canada. Choose a starting point,
+            an ending point, and some places you'd like to stop along the way.
+        </p>
         <b>Start:</b>
         <select id="start">
+          <option value="St. John's, NL">St. John's NL</option>
           <option value="Halifax, NS">Halifax, NS</option>
-          <option value="Boston, MA">Boston, MA</option>
-          <option value="New York, NY">New York, NY</option>
-          <option value="Miami, FL">Miami, FL</option>
+          <option value="Montreal, QC">Montreal, QC</option>
+          <option value="Toronto, ON">Toronto, ON</option>
+          <option value="Winnipeg, MB">Winnipeg, MB</option>
+          <option value="Calgary, AB">Calgary, AB</option>
+          <option value="Edmonton, AB">Edmonton, AB</option>
+          <option value="Vancouver, BC">Vancouver, BC</option>
+          <option value="Victoria, BC">Victoria, BC</option>
         </select>
-        <br />
         <b>Waypoints:</b> <br />
         <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br />
         <select multiple id="waypoints">
-          <option value="montreal, quebec">Montreal, QBC</option>
-          <option value="toronto, ont">Toronto, ONT</option>
-          <option value="chicago, il">Chicago</option>
-          <option value="winnipeg, mb">Winnipeg</option>
-          <option value="fargo, nd">Fargo</option>
-          <option value="calgary, ab">Calgary</option>
-          <option value="spokane, wa">Spokane</option>
+          <option value="St. John's, NL">St. John's NL</option>
+          <option value="Halifax, NS">Halifax, NS</option>
+          <option value="Montreal, QC">Montreal, QC</option>
+          <option value="Toronto, ON">Toronto, ON</option>
+          <option value="Winnipeg, MB">Winnipeg, MB</option>
+          <option value="Calgary, AB">Calgary, AB</option>
+          <option value="Edmonton, AB">Edmonton, AB</option>
+          <option value="Jasper National Park, AB">Jasper National Park</option>
+          <option value="Banff National Park, AB">Banff National Park</option>
+          <option value="Vancouver, BC">Vancouver, BC</option>
+          <option value="Victoria, BC">Victoria, BC</option>
         </select>
-        <br />
         <b>End:</b>
         <select id="end">
-          <option value="Vancouver, BC">Vancouver, BC</option>
-          <option value="Seattle, WA">Seattle, WA</option>
-          <option value="San Francisco, CA">San Francisco, CA</option>
-          <option value="Los Angeles, CA">Los Angeles, CA</option>
+            <option value="Victoria, BC">Victoria, BC</option>
+            <option value="Vancouver, BC">Vancouver, BC</option>
+            <option value="Edmonton, AB">Edmonton, AB</option>
+            <option value="Calgary, AB">Calgary, AB</option>
+            <option value="Winnipeg, MB">Winnipeg, MB</option>
+            <option value="Toronto, ON">Toronto, ON</option>
+            <option value="Montreal, QC">Montreal, QC</option>
+            <option value="Halifax, NS">Halifax, NS</option>
+            <option value="St. John's, NL">St. John's NL</option>
         </select>
         <br />
         <input type="submit" id="submit" />
