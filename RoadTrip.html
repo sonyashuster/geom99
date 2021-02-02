@@ -98,7 +98,7 @@
             waypoints: waypts,
             optimizeWaypoints: true,
             travelMode: google.maps.TravelMode.DRIVING,
-            avoidTolls: true,
+            avoidTolls: true, // Added this to increase the chances of the route being through Canada only
           },
           (response, status) => {
             if (status === "OK") {
@@ -106,6 +106,7 @@
               const route = response.routes[0];
               const summaryPanel = document.getElementById("directions-panel");
               summaryPanel.innerHTML = "";
+              var totalDistance = 0
 
               // For each route, display summary information.
               for (let i = 0; i < route.legs.length; i++) {
@@ -117,7 +118,13 @@
                 summaryPanel.innerHTML +=
                   route.legs[i].distance.text + "<br>";
                 summaryPanel.innerHTML += 
-                  route.legs[i].duration.text + "<br><br>";
+                  route.legs[i].duration.text + "<br>";
+                totalDistance += route.legs[i].distance.value;
+                var totalDistanceStr = totalDistance.toLocaleString("en-CA");
+                var lenDistStr = totalDistanceStr.length;
+                var totalDistanceStr = totalDistanceStr.substr(0,lenDistStr-4);
+                summaryPanel.innerHTML += "<b>Distance Travelled: " + 
+                  totalDistanceStr + " km" + "<br><br>";
               }
             } else {
               window.alert("Directions request failed due to " + status);
@@ -150,17 +157,19 @@
         <b>Waypoints:</b> <br />
         <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br />
         <select multiple id="waypoints">
-          <option value="St. John's, NL">St. John's NL</option>
-          <option value="Halifax, NS">Halifax, NS</option>
-          <option value="Montreal, QC">Montreal, QC</option>
-          <option value="Toronto, ON">Toronto, ON</option>
-          <option value="Winnipeg, MB">Winnipeg, MB</option>
-          <option value="Calgary, AB">Calgary, AB</option>
-          <option value="Edmonton, AB">Edmonton, AB</option>
-          <option value="Jasper National Park, AB">Jasper National Park</option>
+          <option value="St. John's, NL">St. John's</option>
+          <option value="Halifax, NS">Halifax</option>
+          <option value="Montreal, QC">Montreal</option>
+          <option value="Ottawa, ON">Ottawa</option>
+          <option value="Toronto, ON">Toronto</option>
+          <option value="Winnipeg, MB">Winnipeg</option>
+          <option value="Edmonton, AB">Edmonton</option>
+          <option value="Calgary, AB">Calgary</option>
           <option value="Banff National Park, AB">Banff National Park</option>
-          <option value="Vancouver, BC">Vancouver, BC</option>
-          <option value="Victoria, BC">Victoria, BC</option>
+          <option value="Jasper National Park, AB">Jasper National Park</option>
+          <option value="Kelowna, BC">Kelowna, BC (Okanagan Valley)</option>
+          <option value="Vancouver, BC">Vancouver</option>
+          <option value="Victoria, BC">Victoria</option>
         </select>
         <b>End:</b>
         <select id="end">
