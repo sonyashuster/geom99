@@ -106,7 +106,8 @@
               const route = response.routes[0];
               const summaryPanel = document.getElementById("directions-panel");
               summaryPanel.innerHTML = "";
-              var totalDistance = 0
+              var totalDistance = 0, totalDistanceStr = "", lenDistStr = 0, 
+              totalDistanceStr = "";
 
               // For each route, display summary information.
               for (let i = 0; i < route.legs.length; i++) {
@@ -119,11 +120,14 @@
                   route.legs[i].distance.text + "<br>";
                 summaryPanel.innerHTML += 
                   route.legs[i].duration.text + "<br>";
+                
+                // Calculate the distance travelled so far, and display it in 
+                // the same format as the distance travelled on that leg.
                 totalDistance += route.legs[i].distance.value;
-                var totalDistanceStr = totalDistance.toLocaleString("en-CA");
-                var lenDistStr = totalDistanceStr.length;
-                var totalDistanceStr = totalDistanceStr.substr(0,lenDistStr-4);
-                summaryPanel.innerHTML += "<b>Distance Travelled: " + 
+                totalDistanceStr = totalDistance.toLocaleString("en-CA");
+                lenDistStr = totalDistanceStr.length;
+                totalDistanceStr = totalDistanceStr.substr(0,lenDistStr-4);
+                summaryPanel.innerHTML += "<b>Total Distance Travelled: " + 
                   totalDistanceStr + " km" + "<br><br>";
               }
             } else {
@@ -159,6 +163,7 @@
         <select multiple id="waypoints">
           <option value="St. John's, NL">St. John's</option>
           <option value="Halifax, NS">Halifax</option>
+          <option value="Quebec, QC">Quebec City</option>
           <option value="Montreal, QC">Montreal</option>
           <option value="Ottawa, ON">Ottawa</option>
           <option value="Toronto, ON">Toronto</option>
