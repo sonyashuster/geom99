@@ -39,7 +39,7 @@
         const view = new MapView({
           map: map,
           center: [-73.978028, 40.762806], // Longitude, latitude
-          zoom: 13, // Zoom level
+          zoom: 12, // Zoom level
           container: "viewDiv" // Div element
         });
 
@@ -51,13 +51,11 @@
           longitude: -73.978028,
           latitude: 40.762806
         };
-        const simpleMarkerSymbol = {
-          type: "simple-marker",
-          color: [226, 119, 40],  // Orange
-          outline: {
-            color: [255, 255, 255], // White
-            width: 1
-          }
+        const pictureMarkerSymbol = {
+          type: "picture-marker",
+          url: "heart_Small.png", // image from: https://pixy.org/1037783/
+          width: "25px",
+          height: "22px"
         };
 
         const popupTemplate = {
@@ -69,9 +67,7 @@
               }, {
                 type: "media",
                 mediaInfos: [{
-                //   title: "LOVE Sculpture",
                   type: "image",
-                //   caption: "LOVE sculpture in New York City",
                   value: {
                     sourceURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/LOVE_sculpture_NY.JPG/320px-LOVE_sculpture_NY.JPG"
                   }
@@ -80,8 +76,7 @@
         }
         const attributes = {
           Name: "LOVE",
-          Description: "The LOVE sculpture at is on the southeast corner of 6th Avenue and West 55th Street in New York, New York",
-        //   sourceURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/LOVE_sculpture_NY.JPG/320px-LOVE_sculpture_NY.JPG"
+          Description: "The LOVE sculpture at is on the southeast corner of 6th Avenue and West 55th Street in New York City",
         }
 
         const pointGraphic = new Graphic({
@@ -101,7 +96,3 @@
     <div id="viewDiv"></div>
   </body>
 </html>
-
-
-
-40.762806, -73.978028
