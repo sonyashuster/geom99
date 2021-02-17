@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ArcGIS API for JavaScript Tutorials: Display a map</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.18/"></script>
+
+    <script>
+      require([
+          "esri/config",
+          "esri/Map", 
+          "esri/views/MapView",
+
+          "esri/Graphic",
+          "esri/layers/GraphicsLayer"
+        
+        ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+
+        esriConfig.apiKey = "AAPKf80b4347c7d64207a84818b067016b7fGPMyMtn6SYC6R9t3iisqaCrv0PHKqxx74_PS7Gu6IF369FQ9QMwn7b5Fis3IHj42";
+
+        const map = new Map({
+          basemap: "arcgis-topographic" // Basemap layer service
+        });
+
+        const view = new MapView({
+          map: map,
+          center: [-73.978028, 40.762806], // Longitude, latitude
+          zoom: 13, // Zoom level
+          container: "viewDiv" // Div element
+        });
+
+        const graphicsLayer = new GraphicsLayer();
+        map.add(graphicsLayer);
+
+        const point = { //Create a point
+          type: "point",
+          longitude: -73.978028,
+          latitude: 40.762806
+        };
+        const simpleMarkerSymbol = {
+          type: "simple-marker",
+          color: [226, 119, 40],  // Orange
+          outline: {
+            color: [255, 255, 255], // White
+            width: 1
+          }
+        };
+
+        const popupTemplate = {
+          title: "{Name}",
+          content: "{Description}"
+        }
+        const attributes = {
+          Name: "Graphic",
+          Description: "I am a polygon"
+        }
+
+        const pointGraphic = new Graphic({
+          geometry: point,
+          symbol: simpleMarkerSymbol,
+
+          attributes: attributes,
+          popupTemplate: popupTemplate
+        });
+        graphicsLayer.add(pointGraphic);
+
+      });
+    </script>
+
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
+
+
+
+40.762806, -73.978028
