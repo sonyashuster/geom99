@@ -65,7 +65,6 @@
           content: [
               {
                 type: "text",
-                
                 text: "{Description}",
               }, {
                 type: "media",
@@ -73,14 +72,16 @@
                   title: "LOVE Sculpture",
                   type: "image",
                   caption: "LOVE sculpture in New York City",
-                  value: "{sourceURL}"
+                  value: {
+                    sourceURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/LOVE_sculpture_NY.JPG/320px-LOVE_sculpture_NY.JPG"
+                  }
                 }]
               }]
         }
         const attributes = {
           Name: "LOVE",
           Description: "The LOVE sculpture at is on the southeast corner of 6th Avenue and West 55th Street in New York, New York",
-          sourceURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/LOVE_sculpture_NY.JPG/320px-LOVE_sculpture_NY.JPG"
+        //   sourceURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/LOVE_sculpture_NY.JPG/320px-LOVE_sculpture_NY.JPG"
         }
 
         const pointGraphic = new Graphic({
