@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+      <title>Provinces of Canada</title>
+  
+      <style>
+        html,
+        body,
+        #viewDiv {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+          width: 100%;
+        }
+      </style>
+
+      <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
+      <script src="https://js.arcgis.com/4.18/"></script>
+
+      <script>
+        require([
+          "esri/config",
+          "esri/Map", 
+          "esri/views/MapView",
+          "esri/layers/FeatureLayer",
+          "esri/Graphic",
+          "esri/layers/GraphicsLayer"
+        ], function (esriConfig,Map, MapView, FeatureLayer, Graphic, GraphicsLayer) {
+            
+          esriConfig.apiKey = "AAPK693f8a7f63ad44ca82d080bd7d62fbafwtFxzKdrX99KssJGQKEpKoDRycy2Uaa3JO4XzJk5t0pivrbCF-TvzTR4JRgUMRKJ";
+
+          const map = new Map({
+            basemap: "arcgis-topographic" // Basemap layer service
+          });
+
+          const view = new MapView({
+            map: map,
+            center: [-94.84955529054146, 70.03243594936099], // Longitude, latitude
+            zoom: 3, // Zoom level
+            container: "viewDiv" // Div element
+          });
+
+          const popupTemplate = {
+            title: "{Name}",
+            content: [{
+              type: "fields",
+              fieldInfos: [{
+                fieldName: "PRENAME",
+                label: "Province"
+              }]
+            }]
+
+            // "{Description}"
+          }
+          const attributes = {
+            Name: "{PRENAME}",
+            // Description: "I am a polygon"
+          }
+
+          // Provinces (polygons)
+          const canada = new FeatureLayer({
+            url: "https://luna.flemingcollege.ca/arcgis/rest/services/Geom99lab1/SShusterCanada/MapServer/0",
+            attributes: attributes,
+            popupTemplate: popupTemplate
+          });
+
+          map.add(canada, 0);
+
+          
+
+          const polygonGraphic = new Graphic({
+            geometry: polygon,
+            symbol: simpleFillSymbol,
+
+            
+
+          });
+          graphicsLayer.add(polygonGraphic);
+  
+        });
+      </script>
+  
+    </head>
+    <body>
+      <div id="viewDiv"></div>
+    </body>
+  </html>
